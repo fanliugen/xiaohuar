@@ -38,8 +38,7 @@ class XiaohuaSpider(scrapy.Spider):
         photourl = response.xpath("//ul[@class='photo_ul']//div[@class='p-tmb']/a/@href").extract_first(default=None)
         if photourl:
             yield scrapy.Request(photourl ,  callback=self.parse_imageurl,meta={'item':deepcopy(itemInfo)})
-        # print(itemInfo)
-        # yield itemInfo
+
 
     def parse_imageurl(self,response):
         itemInfo = response.meta['item']
